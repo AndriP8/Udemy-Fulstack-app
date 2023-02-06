@@ -1,11 +1,11 @@
-const Fastify = require("fastify");
+const Fastify = require('fastify');
 
 const build = (opts = {}) => {
   const app = Fastify(opts);
 
-  app.get("/", (request, reply) => {
+  app.get('/', (request, reply) => {
     reply.send({
-      hello: "world",
+      hello: 'world',
     });
   });
   return app;
