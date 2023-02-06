@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint '**/*.js' --fix --ignore-pattern node_modules/",
+    "format": "prettier --write '**/*.js'"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +19,9 @@
   "devDependencies": {
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.25.2",
-    "pino-pretty": "^9.1.1"
+    "pino-pretty": "^9.1.1",
+    "prettier": "^2.8.3"
   }
 }
