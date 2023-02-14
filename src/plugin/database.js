@@ -6,7 +6,7 @@ const db = async (fastify, options, next) => {
   const dbConnection = pgp(process.env.POSTGRES_URI);
 
   // register db as decorator to provide globally
-  fastify.decorat('db', dbConnection);
+  fastify.decorate('db', dbConnection);
 
   fastify.log.info('Migration is about to run');
   const migrationCount = await applyMigration();
