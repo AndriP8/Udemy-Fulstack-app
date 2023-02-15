@@ -1,5 +1,5 @@
-const loadEnvironmentVariables = (envName) => {
-  if (process.env[envName]) {
+const loadEnvironmentVarible = (envName) => {
+  if (envName) {
     return process.env[envName];
   }
 
@@ -7,5 +7,5 @@ const loadEnvironmentVariables = (envName) => {
 };
 
 module.exports = {
-  database_uri: loadEnvironmentVariables('POSTGRES_URI'),
+  database_uri: loadEnvironmentVarible('POSTGRES_URI'),
 };

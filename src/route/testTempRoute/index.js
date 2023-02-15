@@ -16,3 +16,5 @@ const route = async (fastify) => {
     reply.code(201).send({ id });
   });
 };
+
+module.exports = route;

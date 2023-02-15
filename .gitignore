@@ -4,3 +4,4 @@ coverage
 .batect
 .env
 .DS_Store
+postgres-data
