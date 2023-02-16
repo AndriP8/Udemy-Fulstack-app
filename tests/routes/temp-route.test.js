@@ -24,12 +24,12 @@ describe('temp route', () => {
     expect(res.json().id).toBeDefined();
   });
 
-  it("should return 200 for GET route", async() => {
+  it('should return 200 for GET route', async () => {
     const res = await app.inject({
-        method: 'GET',
-        url: '/api/v1/test/',
-      });
-  
-      expect(res.statusCode).toBe(200);
-  })
+      method: 'GET',
+      url: '/api/v1/test/',
+    });
+
+    expect(res.statusCode).toBe(200);
+  });
 });

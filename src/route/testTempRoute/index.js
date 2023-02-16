@@ -1,6 +1,10 @@
+const tempService = require('../../services/temp.service');
+
 const route = async (fastify) => {
+  const { getAll, save } = tempService(fastify);
+
   fastify.get('/', async (request, reply) => {
-    const allTest = await fastify.db.query('select * from test');
+    const allTest = await getAll();
 
     reply.code(200).send(allTest);
   });
@@ -9,9 +13,7 @@ const route = async (fastify) => {
     fastify.log.info(`request with body ${request}`);
     const { title } = request.body;
 
-    await fastify.db.one('INSERT INTO test(title) VALUES($1) RETURNING id', [
-      title,
-    ]);
+    const id = await save(title);
 
     reply.code(201).send({ id });
   });

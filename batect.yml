@@ -15,14 +15,14 @@ containers:
   # postgres sql container
   db:
     image: postgres:alpine
+    ports:
+      - 5432:5432
     volumes:
       - local: ./postgres-data
         container: /var/lib/postgresql/data
-    ports:
-      - 5432:5432
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_USER: user
+      POSTGRES_USER: app
       POSTGRES_DB: db
 
   db-test:
@@ -31,14 +31,14 @@ containers:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_USER: user
+      POSTGRES_USER: app
       POSTGRES_DB: db
 
 tasks:
-  start-test-db:
-    description: start for database
+  start-dev-db:
+    description: start development database
     run:
-      container: db-test
+      container: db
 
   say-hello:
     description: Say hello to the nice person reading the Batect documentation
@@ -50,9 +50,6 @@ tasks:
   install-dep:
     description: Install dependecies needed to build fastify application
     run:
-      environment:
-        PORT: 5001
-        POSTGERS_URI: postgress://app:password@db/db
       container: build-fastify-env
       command: npm install
 
@@ -60,6 +57,9 @@ tasks:
   start-server:
     description: Run fastify application
     run:
+      environment:
+        PORT: 5001
+        POSTGRES_URI: postgres://app:password@db/db
       container: build-fastify-env
       command: npm run start
       ports:
@@ -73,7 +73,7 @@ tasks:
       container: build-fastify-env
       environment:
         PORT: 8080
-        POSTGERS_URI: postgress://app:password@db-test/db
+        POSTGRES_URI: postgres://app:password@db-test/db
       command: npm run test:watch
     dependencies:
       - db-test
