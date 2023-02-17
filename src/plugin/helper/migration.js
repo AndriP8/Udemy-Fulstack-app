@@ -7,7 +7,6 @@ const applyMigration = () =>
 
     dbMigrate.up((error, result = []) => {
       if (error) {
-        console.log(error);
         reject(error);
       }
 
