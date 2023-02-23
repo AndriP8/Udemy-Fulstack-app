@@ -1,4 +1,5 @@
 const Fastify = require('fastify');
+const cors = require('@fastify/cors');
 const db = require('./plugin/database');
 const testRoute = require('./route/testTempRoute');
 const userRoute = require('./route/user');
@@ -9,6 +10,7 @@ const build = (opts = {}) => {
 
   // register plugin
   app.register(db);
+  app.register(cors);
 
   // register route
   app.register(testRoute, { prefix: 'api/v1/test' });
