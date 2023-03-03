@@ -4,6 +4,7 @@ const db = require('./plugin/database');
 const testRoute = require('./route/testTempRoute');
 const userRoute = require('./route/user');
 const jobRoute = require('./route/job');
+const authenticate = require('./plugin/authenticate');
 
 const build = (opts = {}) => {
   const app = Fastify(opts);
@@ -11,6 +12,7 @@ const build = (opts = {}) => {
   // register plugin
   app.register(db);
   app.register(cors);
+  app.register(authenticate);
 
   // register route
   app.register(testRoute, { prefix: 'api/v1/test' });

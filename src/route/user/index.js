@@ -30,7 +30,6 @@ const userRoute = async (fastify) => {
 
       const user = await getUserByEmailId(email, password);
 
-      // create jwt token
       const token = fastify.jwt.sign(user);
 
       reply.code(200).send({ token: `Bearer ${token}` });
